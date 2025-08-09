@@ -11,6 +11,7 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import Shahkar from './pages/Shahkar.tsx';
 import Video from "./pages/Video.tsx";
+import Sign from "./pages/Sign.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: 'video',
         element: <Video />
+      },
+        {
+        path: 'sign',
+        element: <Sign />
       },
 
     ]
