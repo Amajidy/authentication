@@ -10,6 +10,7 @@ import {
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import Shahkar from './pages/Shahkar.tsx';
+import Video from "./pages/Video.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,12 @@ const router = createBrowserRouter([
       {
         path: 'shahkar',
         element: <Shahkar />
-      }
+      },
+      {
+        path: 'video',
+        element: <Video />
+      },
+
     ]
   },
 ]);
