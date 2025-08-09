@@ -26,18 +26,18 @@ export default function FaceDetectionRecorder() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
 
-    // تابع شروع استریم دوربین
+    // تابع شروع استریم دوربین و میکروفن
     const startCameraStream = async () => {
         try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true }); // audio:true اضافه شد
             if (videoRef.current) {
                 videoRef.current.srcObject = stream;
                 setRecordedVideoURL(null); // پاک کردن ویدئو ضبط شده قبلی
             }
             return stream;
         } catch (err) {
-            console.error("خطا در دسترسی به دوربین:", err);
-            setMessage("❌ دسترسی به دوربین رد شد.");
+            console.error("خطا در دسترسی به دوربین و میکروفن:", err);
+            setMessage("❌ دسترسی به دوربین و میکروفن رد شد.");
             return null;
         }
     };
@@ -233,7 +233,7 @@ export default function FaceDetectionRecorder() {
                         <video
                             ref={videoRef}
                             autoPlay={!recordedVideoURL}
-                            muted={recording} // وقتی ضبط می‌کنیم صدای میوت باشه
+                            muted={recording} // هنگام ضبط میوت باشه (صدای میکروفن پخش نشه)
                             playsInline
                             onClick={recordedVideoURL ? handlePlaybackClick : undefined}
                             onTimeUpdate={handleTimeUpdate}
